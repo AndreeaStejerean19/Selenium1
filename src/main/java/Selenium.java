@@ -141,11 +141,13 @@ public class Selenium {
         selectSizeOfProduct.click();
 
         WebElement addQuantity = driver.findElement(By.id("qty"));
+        addQuantity.clear();
         addQuantity.sendKeys("5");
-        Thread.sleep(3000);
+
 
         WebElement addProductToCart = driver.findElement(By.cssSelector("#product_addtocart_form > div.product-shop > div.product-options-bottom > div.add-to-cart > div.add-to-cart-buttons > button > span > span"));
         addProductToCart.click();
+
 
     }
 
@@ -158,31 +160,40 @@ public class Selenium {
         WebElement topBlousesButton = driver.findElement(By.cssSelector("body > div > div > div.main-container.col1-layout > div > div.col-main > ul > li:nth-child(2) > a > img"));
         topBlousesButton.click();
 
-        WebElement selectproduct = driver.findElement(By.cssSelector("body > div > div > div.main-container.col3-layout > div > div.col-wrapper > div.col-main > div.category-products > ul > li:nth-child(2) > a"));
-        selectproduct.click();
+        WebElement selectProduct = driver.findElement(By.cssSelector("body > div > div > div.main-container.col3-layout > div > div.col-wrapper > div.col-main > div.category-products > ul > li:nth-child(2) > a"));
+        selectProduct.click();
 
         WebElement selectColorOfProduct = driver.findElement(By.cssSelector("#swatch21 > span.swatch-label > img"));
         selectColorOfProduct.click();
 
-        WebElement selectSizeOfProduct = driver.findElement(By.cssSelector("#swatch81 > span.swatch-label"));
-        selectSizeOfProduct.click();
+        WebElement selectSizeOfProduct = driver.findElement(By.cssSelector("#swatch79 > span.swatch-label"));
+        selectColorOfProduct.click();
 
-        WebElement addQuantity = driver.findElement(By.id("qty"));
-        addQuantity.sendKeys("5");
-        Thread.sleep(3000);
-
-        WebElement addProductToCart = driver.findElement(By.cssSelector("#product_addtocart_form > div.product-shop > div.product-options-bottom > div.add-to-cart > div.add-to-cart-buttons > button > span > span"));
-        addProductToCart.click();
-
+        driver.quit();
 
     }
 
     public  void removeProductFromCart() throws InterruptedException {
         addProductToCartWithoutQuit();
-        driver.navigate().back();
+        navigateToPage("VIP");
+
+        WebElement flapover = driver.findElement(By.cssSelector("#product-collection-image-373"));
+        flapover.click();
+
+        WebElement addQuantity = driver.findElement(By.id("qty"));
+
+        addQuantity.clear();
+        addQuantity.sendKeys("7");
+
+        WebElement addProductToCart = driver.findElement(By.cssSelector("#product_addtocart_form > div.add-to-cart-wrapper > div > div > div.add-to-cart-buttons > button"));
+        addProductToCart.click();
+
+//        WebElement removeProduct = driver.findElement(By.cssSelector("#shopping-cart-table > tbody > tr.first.odd > td.product-cart-info > a > btn-remove btn-remove2"));
+//        removeProduct.click();
+//        driver.quit();
+
 
     }
-
 
     public static void main(String[] args) throws InterruptedException {
         Selenium selenium = new Selenium();
