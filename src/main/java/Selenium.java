@@ -49,8 +49,7 @@ public class Selenium {
         }
 
         public void account() {
-
-        WebElement element=driver.findElement(By.cssSelector("#header > div > div.skip-links > div > a"));
+        WebElement element=driver.findElement(By.cssSelector(".account-cart-wrapper > a"));
         element.click();
 
     }
@@ -108,7 +107,7 @@ public class Selenium {
     }
 
     public void addProductToCartWithoutQuit() throws InterruptedException {
-        navigateToPage("WOMEN"); //lista cu categ
+        navigateToPage("WOMEN");
 
         WebElement topBlousesButton = driver.findElement(By.cssSelector("body > div > div > div.main-container.col1-layout > div > div.col-main > ul > li:nth-child(2) > a > img"));
         topBlousesButton.click();
@@ -208,12 +207,13 @@ public class Selenium {
         Selenium selenium = new Selenium();
         selenium.setup();
         selenium.navigateToHomepage();
+
         //selenium.navigateToPage("ACCESSORIES");
-        //homepage();
-        //account();
-        //languages();
-        //search();
-        //newProductsList();
+        //selenium.homepage();
+        //selenium.account();
+        //selenium.languages();
+        //selenium.search();
+       // selenium.newProductsList();
         //selenium.addProductToCart();
         selenium.removeProductFromCart();
         //selenium.registerNewUser();
