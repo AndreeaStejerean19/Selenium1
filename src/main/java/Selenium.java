@@ -101,7 +101,6 @@ public class Selenium {
                 break;
             }
         }
-        //driver.quit();
     }
 
     public void addProductToCartWithoutQuit() throws InterruptedException {
