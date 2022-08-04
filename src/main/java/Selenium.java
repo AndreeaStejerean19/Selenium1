@@ -54,7 +54,6 @@ public class Selenium {
 
     }
     public void languages(){
-
         WebElement element=driver.findElement(By.cssSelector("#select-language"));
         element.click();
 
@@ -69,8 +68,7 @@ public class Selenium {
     }
 
     public void search() throws InterruptedException {
-
-        WebElement element = driver.findElement(By.cssSelector("#search"));
+        WebElement element = driver.findElement(By.id("search"));
         element.sendKeys("Acest text va fi sters");
         Thread.sleep(3000);
         element.clear();
@@ -109,40 +107,48 @@ public class Selenium {
     public void addProductToCartWithoutQuit() throws InterruptedException {
         navigateToPage("WOMEN");
 
-        WebElement topBlousesButton = driver.findElement(By.cssSelector("body > div > div > div.main-container.col1-layout > div > div.col-main > ul > li:nth-child(2) > a > img"));
-        topBlousesButton.click();
+        WebElement topsBlousesButton = driver.findElement(By.cssSelector(".catblocks li:nth-child(2) > a"));
+        topsBlousesButton.click();
 
-        WebElement selectproduct = driver.findElement(By.cssSelector("body > div > div > div.main-container.col3-layout > div > div.col-wrapper > div.col-main > div.category-products > ul > li:nth-child(2) > a"));
+
+        WebElement selectproduct = driver.findElement(By.cssSelector("ul.products-grid > li:nth-child(2) > a"));
         selectproduct.click();
 
-        WebElement selectColorOfProduct = driver.findElement(By.cssSelector("#swatch21 > span.swatch-label > img"));
+        WebElement selectColorOfProduct = driver.findElement(By.cssSelector("ul#configurable_swatch_color > li:nth-child(2) > a"));
         selectColorOfProduct.click();
 
-        WebElement selectSizeOfProduct = driver.findElement(By.cssSelector("#swatch81 > span.swatch-label"));
+        WebElement selectSizeOfProduct = driver.findElement(By.cssSelector("ul#configurable_swatch_size > li:nth-child(3) > a"));
         selectSizeOfProduct.click();
 
         WebElement addQuantity = driver.findElement(By.id("qty"));
         addQuantity.clear();
         addQuantity.sendKeys("5");
 
-        WebElement addProductToCart = driver.findElement(By.cssSelector("#product_addtocart_form > div.product-shop > div.product-options-bottom > div.add-to-cart > div.add-to-cart-buttons > button > span > span"));
+        WebElement addProductToCart = driver.findElement(By.cssSelector(".add-to-cart-buttons "));
         addProductToCart.click();
     }
 
     public void addProductToCart() throws InterruptedException {
         navigateToPage("WOMEN"); //lista cu categ
 
-        WebElement topBlousesButton = driver.findElement(By.cssSelector("body > div > div > div.main-container.col1-layout > div > div.col-main > ul > li:nth-child(2) > a > img"));
+        WebElement topBlousesButton = driver.findElement(By.cssSelector("ul.catblocks > li:nth-child(2) >a"));
         topBlousesButton.click();
 
-        WebElement selectProduct = driver.findElement(By.cssSelector("body > div > div > div.main-container.col3-layout > div > div.col-wrapper > div.col-main > div.category-products > ul > li:nth-child(2) > a"));
+        WebElement selectProduct = driver.findElement(By.cssSelector("ul.products-grid > li:nth-child(2) > a"));
         selectProduct.click();
 
-        WebElement selectColorOfProduct = driver.findElement(By.cssSelector("#swatch21 > span.swatch-label > img"));
+        WebElement selectColorOfProduct = driver.findElement(By.cssSelector("ul#configurable_swatch_color > li:nth-child(2) > a"));
         selectColorOfProduct.click();
 
-        WebElement selectSizeOfProduct = driver.findElement(By.cssSelector("#swatch79 > span.swatch-label"));
+        WebElement selectSizeOfProduct = driver.findElement(By.cssSelector("ul#configurable_swatch_size > li:nth-child(3) > a"));
         selectColorOfProduct.click();
+
+        WebElement addQuantity = driver.findElement(By.id("qty"));
+        addQuantity.clear();
+        addQuantity.sendKeys("5");
+
+        WebElement addProductToCart = driver.findElement(By.cssSelector(".add-to-cart-buttons "));
+        addProductToCart.click();
 
         driver.quit();
 
@@ -152,7 +158,7 @@ public class Selenium {
         addProductToCartWithoutQuit();
         navigateToPage("VIP");
 
-        WebElement flapoverProduct = driver.findElement(By.cssSelector("#product-collection-image-373"));
+        WebElement flapoverProduct = driver.findElement(By.cssSelector(".category-products > .products-grid > li:nth-child(1)"));
         flapoverProduct.click();
 
         WebElement addQuantity = driver.findElement(By.id("qty"));
@@ -160,12 +166,12 @@ public class Selenium {
         addQuantity.clear();
         addQuantity.sendKeys("7");
 
-        WebElement addProductToCart = driver.findElement(By.cssSelector("#product_addtocart_form > div.add-to-cart-wrapper > div > div > div.add-to-cart-buttons > button"));
+        WebElement addProductToCart = driver.findElement(By.cssSelector(".add-to-cart-buttons > button "));
         addProductToCart.click();
 
         WebElement removeProduct = driver.findElement(By.id("shopping-cart-table")).findElement(By.xpath("./tbody/tr/td[6]/a"));
         removeProduct.click();
-        driver.quit();
+
     }
 
 //    public void submitReview() {
@@ -182,19 +188,19 @@ public class Selenium {
         WebElement myAccoutButton =driver.findElement(By.cssSelector("#header-account > div > ul > li:nth-child(5) > a"));
         myAccoutButton.click();
 
-        WebElement fillName = driver.findElement(By.cssSelector("#firstname"));
+        WebElement fillName = driver.findElement(By.id("firstname"));
         fillName.sendKeys("Pop");
 
         WebElement fillLastName = driver.findElement(By.id("lastname"));
         fillLastName.sendKeys("Ana");
 
-        WebElement fillEmail= driver.findElement(By.cssSelector("#email_address"));
+        WebElement fillEmail= driver.findElement(By.id("email_address"));
         fillEmail.sendKeys("ana.pop@yahoo.com");
 
-        WebElement fillPassword = driver.findElement(By.cssSelector("#password"));
+        WebElement fillPassword = driver.findElement(By.id("password"));
         fillPassword.sendKeys("anapop2022");
 
-        WebElement fillConfirmPassword = driver.findElement(By.cssSelector("#confirmation"));
+        WebElement fillConfirmPassword = driver.findElement(By.id("confirmation"));
         fillConfirmPassword.sendKeys("anapop2022");
 
         WebElement registerButton = driver.findElement(By.cssSelector("#form-validate > div.buttons-set > button"));
@@ -213,8 +219,9 @@ public class Selenium {
         //selenium.account();
         //selenium.languages();
         //selenium.search();
-       // selenium.newProductsList();
+        //selenium.newProductsList();
         //selenium.addProductToCart();
+        //selenium.addProductToCartWithoutQuit();
         selenium.removeProductFromCart();
         //selenium.registerNewUser();
 
