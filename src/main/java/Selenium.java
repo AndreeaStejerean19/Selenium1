@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-
 public class Selenium {
 
     static WebDriver driver;
@@ -127,7 +126,6 @@ public class Selenium {
         addQuantity.clear();
         addQuantity.sendKeys("5");
 
-
         WebElement addProductToCart = driver.findElement(By.cssSelector("#product_addtocart_form > div.product-shop > div.product-options-bottom > div.add-to-cart > div.add-to-cart-buttons > button > span > span"));
         addProductToCart.click();
     }
@@ -155,8 +153,8 @@ public class Selenium {
         addProductToCartWithoutQuit();
         navigateToPage("VIP");
 
-        WebElement flapover = driver.findElement(By.cssSelector("#product-collection-image-373"));
-        flapover.click();
+        WebElement flapoverProduct = driver.findElement(By.cssSelector("#product-collection-image-373"));
+        flapoverProduct.click();
 
         WebElement addQuantity = driver.findElement(By.id("qty"));
 
@@ -166,10 +164,11 @@ public class Selenium {
         WebElement addProductToCart = driver.findElement(By.cssSelector("#product_addtocart_form > div.add-to-cart-wrapper > div > div > div.add-to-cart-buttons > button"));
         addProductToCart.click();
 
-//        WebElement removeProduct = driver.findElement(By.cssSelector("#shopping-cart-table > tbody > tr.first.odd > td.product-cart-info > a > btn-remove btn-remove2"));
-//        removeProduct.click();
-//        driver.quit();
+        WebElement removeProduct = driver.findElement(By.id("shopping-cart-table")).findElement(By.xpath("./tbody/tr/td[6]/a"));
+        removeProduct.click();
+        driver.quit();
     }
+
 //    public void submitReview() {
 //        navigateToPage("ACCESSORIES");
 //        WebElement dropdown = driver.findElement(By.cssSelector("#nav > ol > li.level0.nav-3.active.parent > a"));
@@ -178,24 +177,30 @@ public class Selenium {
 //            WebDriverWait wait = new WebDriverWait(driver,15);
 //            wait.until(ExpectedCondition.visibilityOf(driver.findElement()))
 //   }
+
     public void registerNewUser() {
         account();
         WebElement myAccoutButton =driver.findElement(By.cssSelector("#header-account > div > ul > li:nth-child(5) > a"));
         myAccoutButton.click();
 
         WebElement fillName = driver.findElement(By.cssSelector("#firstname"));
-        fillName.click();
         fillName.sendKeys("Pop");
 
-        WebElement fillLastName = driver.findElement(By.cssSelector("#lastname"));
-        fillLastName.click();
-        fillName.sendKeys("Ana");
+        WebElement fillLastName = driver.findElement(By.id("lastname"));
+        fillLastName.sendKeys("Ana");
 
         WebElement fillEmail= driver.findElement(By.cssSelector("#email_address"));
-        fillName.sendKeys("ana.pop@yahoo.com");
+        fillEmail.sendKeys("ana.pop@yahoo.com");
 
         WebElement fillPassword = driver.findElement(By.cssSelector("#password"));
-        fillName.sendKeys("ana");
+        fillPassword.sendKeys("anapop2022");
+
+        WebElement fillConfirmPassword = driver.findElement(By.cssSelector("#confirmation"));
+        fillConfirmPassword.sendKeys("anapop2022");
+
+        WebElement registerButton = driver.findElement(By.cssSelector("#form-validate > div.buttons-set > button"));
+        registerButton.click();
+        driver.quit();
 
     }
 
@@ -210,8 +215,8 @@ public class Selenium {
         //search();
         //newProductsList();
         //selenium.addProductToCart();
-        //selenium.removeProductFromCart();
-        selenium.registerNewUser();
+        selenium.removeProductFromCart();
+        //selenium.registerNewUser();
 
     }
 }
