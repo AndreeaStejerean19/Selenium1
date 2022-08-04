@@ -3,7 +3,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -52,7 +54,6 @@ public class Selenium {
         WebElement element=driver.findElement(By.cssSelector("#header > div > div.skip-links > div > a"));
         element.click();
 
-        driver.quit();
     }
     public void languages(){
 
@@ -67,7 +68,6 @@ public class Selenium {
         select.selectByVisibleText("French");
 
         driver.quit();
-
     }
 
     public void search() throws InterruptedException {
@@ -91,19 +91,15 @@ public class Selenium {
 
         WebElement element = driver.findElement(By.className("product-name"));
         for(WebElement element1 : elementCount)
-        { String linkText=element1.getText().split("\n")[0]; //ia doar numele pana la enter
+        { String linkText=element1.getText().split("\n")[0];
         System.out.println(linkText);}
 
         driver.quit();
     }
 
     public void navigateToPage(String pageName){
-        //sa identifici lista
-        List<WebElement> pageList = driver.findElements(By.cssSelector("div#header-nav ol.nav-primary > li")); //elem de tip ol care are clasa primary
-        //parcurgi  lista WebElement e tipul elem(ca int, string), page=i, pageList e=n
+        List<WebElement> pageList = driver.findElements(By.cssSelector("div#header-nav ol.nav-primary > li"));
         for(WebElement page:pageList) {
-            //pune conditia si verifica conditia
-            //System.out.println(page.getText());
             if(page.getText().equals(pageName)) {
                 page.click();
                 break;
@@ -112,20 +108,7 @@ public class Selenium {
         //driver.quit();
     }
 
-
-    //ACELASI FOR CA SI SUS
-//        for(int i=0; i<pageList.size(); i++)
-//        {
-//            if(pageList.get(i).getText().equals(pageName)) {
-//                pageList.get(i).click();
-//                break;
-//            }
-//        }
-
     public void addProductToCartWithoutQuit() throws InterruptedException {
-        //get(1)
-        //lista cu categ, cu submeniu, cu prod
-        //identif list de culori, size
         navigateToPage("WOMEN"); //lista cu categ
 
         WebElement topBlousesButton = driver.findElement(By.cssSelector("body > div > div > div.main-container.col1-layout > div > div.col-main > ul > li:nth-child(2) > a > img"));
@@ -147,14 +130,9 @@ public class Selenium {
 
         WebElement addProductToCart = driver.findElement(By.cssSelector("#product_addtocart_form > div.product-shop > div.product-options-bottom > div.add-to-cart > div.add-to-cart-buttons > button > span > span"));
         addProductToCart.click();
-
-
     }
 
     public void addProductToCart() throws InterruptedException {
-        //get(1)
-        //lista cu categ, cu submeniu, cu prod
-        //identif list de culori, size
         navigateToPage("WOMEN"); //lista cu categ
 
         WebElement topBlousesButton = driver.findElement(By.cssSelector("body > div > div > div.main-container.col1-layout > div > div.col-main > ul > li:nth-child(2) > a > img"));
@@ -191,7 +169,33 @@ public class Selenium {
 //        WebElement removeProduct = driver.findElement(By.cssSelector("#shopping-cart-table > tbody > tr.first.odd > td.product-cart-info > a > btn-remove btn-remove2"));
 //        removeProduct.click();
 //        driver.quit();
+    }
+//    public void submitReview() {
+//        navigateToPage("ACCESSORIES");
+//        WebElement dropdown = driver.findElement(By.cssSelector("#nav > ol > li.level0.nav-3.active.parent > a"));
+//        for(int i=0 ; i<5 ; i++){
+//            dropdown.click();
+//            WebDriverWait wait = new WebDriverWait(driver,15);
+//            wait.until(ExpectedCondition.visibilityOf(driver.findElement()))
+//   }
+    public void registerNewUser() {
+        account();
+        WebElement myAccoutButton =driver.findElement(By.cssSelector("#header-account > div > ul > li:nth-child(5) > a"));
+        myAccoutButton.click();
 
+        WebElement fillName = driver.findElement(By.cssSelector("#firstname"));
+        fillName.click();
+        fillName.sendKeys("Pop");
+
+        WebElement fillLastName = driver.findElement(By.cssSelector("#lastname"));
+        fillLastName.click();
+        fillName.sendKeys("Ana");
+
+        WebElement fillEmail= driver.findElement(By.cssSelector("#email_address"));
+        fillName.sendKeys("ana.pop@yahoo.com");
+
+        WebElement fillPassword = driver.findElement(By.cssSelector("#password"));
+        fillName.sendKeys("ana");
 
     }
 
@@ -206,6 +210,8 @@ public class Selenium {
         //search();
         //newProductsList();
         //selenium.addProductToCart();
-        selenium.removeProductFromCart();
+        //selenium.removeProductFromCart();
+        selenium.registerNewUser();
+
     }
 }
